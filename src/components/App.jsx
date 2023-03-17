@@ -1,19 +1,26 @@
-// 115673062d9a805a3df250beb0ca2927
+import { NavLink, Route, Routes } from 'react-router-dom';
+import { Home } from './Home/Home';
+import { Movies } from './Movies/Movies';
+import { MovieDetails } from './MovieDetails/MovieDetails';
 
+// 115673062d9a805a3df250beb0ca2927
 
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      Hello
+    <div>
+      <header>
+      <nav>
+        <NavLink to='/' >Home</NavLink>
+        <NavLink to='/movies'>Movies</NavLink>
+      </nav>
+      </header>
+      
+
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/movies' element={<Movies />}/>
+        <Route path='/movies/:moviesId' element={<MovieDetails />}/>
+      </Routes>
     </div>
   );
 };
