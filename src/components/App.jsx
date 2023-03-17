@@ -1,3 +1,6 @@
+// 115673062d9a805a3df250beb0ca2927
+
+
 export const App = () => {
   return (
     <div
@@ -10,7 +13,7 @@ export const App = () => {
         color: '#010101'
       }}
     >
-      React homework template
+      Hello
     </div>
   );
 };
