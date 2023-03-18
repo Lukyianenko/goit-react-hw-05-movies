@@ -1,5 +1,6 @@
 import { useParams, Link, Outlet  } from "react-router-dom";
 import { useState, useEffect } from "react";
+import css from './MovieDetails.module.css';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
@@ -7,6 +8,11 @@ export const MovieDetails = () => {
     const { moviesId } = useParams();
     const [movie, setMovie] = useState(null);
     const [image, setImage] = useState(null);
+    let num;
+    if(movie){
+    num = Math.round(movie.vote_average * 10);
+    }
+    
 
     useEffect(() => {
         function fetchData() {
@@ -23,16 +29,20 @@ export const MovieDetails = () => {
 
     return (
             <main>
-                 { movie &&
-                 <>
-            <img src={image} alt={movie.title} />
+                { movie &&
+                <>
+              <section className={css.sectionMovie}>
+            <img src={image} alt={movie.title} className={css.imageMovies}/>
+            <div className={css.contList}>
             <h2>{movie.title}</h2>
-            <p>User score: {movie.vote_average * 10}%</p>
+            <p>User score: {num} %</p>
             <h3>Overview</h3>
             <p>{movie.overview}</p>
             <h3>Genres</h3>
             <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
-            <div>
+            </div>
+            </section>
+            <div className={css.containerInfo}>
                 <h4>Additional information</h4>
                 <ul>
                     <li>
@@ -43,8 +53,9 @@ export const MovieDetails = () => {
                     </li>
                 </ul>
             </div>
-            </> }
-            <Outlet />
+            </>
+            }
+            <Outlet /> 
         </main>
     )
 }

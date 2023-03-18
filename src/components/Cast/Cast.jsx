@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import css from './Cast.module.css';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
@@ -12,7 +13,6 @@ export const Cast = () => {
             return await fetch(`https://api.themoviedb.org/3/movie/${moviesId}/credits?api_key=${KEY}`)
             .then(resp => resp.json())
             .then(data => {
-                console.log(data.cast);
                 setCasts(data.cast);
             })
               .catch(erorr => alert(erorr));
@@ -24,13 +24,16 @@ export const Cast = () => {
     return (
         <div>
            { casts &&
-            <ul>
+            <ul className={css.actorList}>
                 {
                   casts.map(item => {
                     const image = `https://image.tmdb.org/t/p/w500/${item.profile_path}`;
                     return(
-                        <li key={item.id}>
-                        <img src={image} alt={item.original_name} />
+                        <li key={item.id} className={css.itemActor}>
+                            <div className={css.imgNot}>
+                            <img src={image} alt={item.original_name} className={css.imgActor}/>
+                            </div>
+                       
                     <p>{item.original_name}</p>
                     <p>Character: {item.character}</p>
                         </li>

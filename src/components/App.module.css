@@ -1,0 +1,23 @@
+.NavList {
+    padding: 15px 15px;
+    color: black;
+}
+
+.link {
+   text-decoration: none;
+   margin-left: 15px;
+   font-size: 36px;
+}
+
+.link:visited {
+    color: black;
+}
+
+.link.active {
+    color: rgb(136, 218, 29);
+}
+
+.header {
+    border-bottom: 2px solid black;
+}
+

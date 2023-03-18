@@ -5,14 +5,13 @@ const KEY = '115673062d9a805a3df250beb0ca2927';
 
 export const Reviews = () => {
     const { moviesId } = useParams();
-    const [review, setReview] = useState(null);
+    const [review, setReview] = useState({});
 
     useEffect(() => {
         async function fetchData() {
             return await fetch(`https://api.themoviedb.org/3/movie/${moviesId}/reviews?api_key=${KEY}`)
             .then(resp => resp.json())
             .then(data => {
-                console.log(data);
                 setReview(data.results);
             })
               .catch(erorr => alert(erorr));
@@ -22,7 +21,7 @@ export const Reviews = () => {
 
     return (
         <div>
-            { review.length !== 0 &&
+            { review.length > 0 &&
             <ul>
                 {
                   review.map(item => {
