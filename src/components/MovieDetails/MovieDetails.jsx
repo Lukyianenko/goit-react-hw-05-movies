@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link, Outlet  } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
@@ -13,7 +13,6 @@ export const MovieDetails = () => {
             return fetch(`https://api.themoviedb.org/3/movie/${moviesId}?api_key=${KEY}`)
             .then(resp => resp.json())
             .then(data => {
-                console.log(data);
                 setMovie(data);
                 setImage(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
             })
@@ -23,7 +22,6 @@ export const MovieDetails = () => {
     }, [moviesId]);
 
     return (
-       
             <main>
                  { movie &&
                  <>
@@ -37,11 +35,16 @@ export const MovieDetails = () => {
             <div>
                 <h4>Additional information</h4>
                 <ul>
-                    <li>Cast</li>
-                    <li>Reviews</li>
+                    <li>
+                        <Link to="cast">Cast</Link>
+                    </li>
+                    <li>
+                        <Link to="reviews">Reviews</Link>    
+                    </li>
                 </ul>
             </div>
             </> }
+            <Outlet />
         </main>
     )
 }
