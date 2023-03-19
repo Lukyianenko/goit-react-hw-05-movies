@@ -5,7 +5,7 @@ import css from './Cast.module.css';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
-export const Cast = () => {
+const Cast = () => {
     const { moviesId } = useParams();
     const [casts, setCasts] = useState(null);
 
@@ -48,6 +48,8 @@ export const Cast = () => {
         </div>
     )
 }
+
+export default Cast;
 
 Cast.propTypes = {
     moviesId: PropTypes.number,

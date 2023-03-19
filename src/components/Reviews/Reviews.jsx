@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
-export const Reviews = () => {
+const Reviews = () => {
     const { moviesId } = useParams();
     const [review, setReview] = useState({});
 
@@ -43,6 +43,7 @@ export const Reviews = () => {
     )
 }
 
+export default Reviews;
 Reviews.propTypes = {
         moviesId: PropTypes.number,
     state: PropTypes.arrayOf(PropTypes.exact({

@@ -1,14 +1,13 @@
 import { NavLink, Route, Routes } from 'react-router-dom';
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
+import Cast from '../components/Cast/Cast';
+import Reviews from '../components/Reviews/Reviews';
 import PropTypes from 'prop-types';
-import { Home } from './Home/Home';
-import { Movies } from './Movies/Movies';
-import { MovieDetails } from './MovieDetails/MovieDetails';
-import { Reviews } from './Reviews/Reviews';
-import { Cast } from './Cast/Cast';
 import css from './App.module.css';
 
-// 115673062d9a805a3df250beb0ca2927
+const Home = lazy(() => import('../components/Home/Home'));
+const Movies = lazy(() => import('../components/Movies/Movies'));
+const MovieDetails = lazy(() => import('../components/MovieDetails/MovieDetails'));
 
 export const App = () => {
   const [isActive, setIsActive] = useState('active');
@@ -35,7 +34,7 @@ const isActived2 = () => {
       </nav>
       </header>
       
-
+      <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/movies' element={<Movies />}/>
@@ -44,6 +43,8 @@ const isActived2 = () => {
           <Route path='reviews' element={<Reviews />}/>
         </Route>
       </Routes>
+      </Suspense>
+      
     </div>
   );
 };

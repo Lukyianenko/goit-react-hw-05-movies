@@ -5,7 +5,7 @@ import css from './MovieDetails.module.css';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
     const { moviesId } = useParams();
     const [movie, setMovie] = useState(null);
     const [image, setImage] = useState(null);
@@ -66,6 +66,7 @@ export const MovieDetails = () => {
     )
 }
 
+export default MovieDetails;
 
 MovieDetails.propTypes = {
     moviesId: PropTypes.number,

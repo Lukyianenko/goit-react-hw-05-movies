@@ -5,7 +5,7 @@ import css from './Movies.module.css';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
-export const Movies = () => {
+const Movies = () => {
     const [movies, setMovies] = useState({});
     const [searchParams, setSearchParams] = useSearchParams('');
     const [moviesId, setMoviesId] = useState('');
@@ -74,6 +74,8 @@ export const Movies = () => {
         </main>
     )
 }
+
+export default Movies;
 
 Movies.propTypes = {
     state: PropTypes.arrayOf(PropTypes.exact({

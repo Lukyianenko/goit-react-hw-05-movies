@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
-export const Home = () => {
+const Home = () => {
     const [movies, setMovies] = useState(null);
     const location = useLocation();
 
@@ -34,6 +34,8 @@ export const Home = () => {
         </main>
     )
 }
+
+export default Home;
 
 Home.propTypes = {
     state: PropTypes.arrayOf(PropTypes.exact({
