@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
 export const Home = () => {
     const [movies, setMovies] = useState(null);
-
+    const location = useLocation();
 
     useEffect(() => {
         function fetchData() {
@@ -27,7 +27,7 @@ export const Home = () => {
             <ul>
             { movies.map(item => 
             { return (<li key={item.id}>
-                <Link to={`/movies/${item.id}`}>{item.title}</Link>
+                <Link to={`/movies/${item.id}`} state={{ from: location }}>{item.title}</Link>
                 </li>)}
             )}
             </ul>}

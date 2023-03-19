@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './Movies.module.css';
 
@@ -9,6 +9,7 @@ export const Movies = () => {
     const [movies, setMovies] = useState({});
     const [searchParams, setSearchParams] = useSearchParams('');
     const [moviesId, setMoviesId] = useState('');
+    const location = useLocation();
 
     const searchMovies = (e) => {
         e.preventDefault();
@@ -63,7 +64,7 @@ export const Movies = () => {
             <ul>
             { movies.map(item => 
             { return (<li key={item.id}>
-                <Link to={`/movies/${item.id}`}>{item.title}</Link>
+                <Link to={`/movies/${item.id}`} state={{ from: location }}>{item.title}</Link>
                 </li>)}
             )}
             </ul>}

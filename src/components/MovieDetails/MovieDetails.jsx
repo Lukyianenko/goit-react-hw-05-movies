@@ -1,5 +1,5 @@
-import { useParams, Link, Outlet  } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useParams, Link, Outlet, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from 'prop-types';
 import css from './MovieDetails.module.css';
 
@@ -9,11 +9,15 @@ export const MovieDetails = () => {
     const { moviesId } = useParams();
     const [movie, setMovie] = useState(null);
     const [image, setImage] = useState(null);
+    const location = useLocation();
+    const backLink = useRef(location.state?.from ?? '/movies');
     let num;
+
+    console.log(backLink);
+    console.log(location)
     if(movie){
     num = Math.round(movie.vote_average * 10);
     }
-    
 
     useEffect(() => {
         function fetchData() {
@@ -32,6 +36,7 @@ export const MovieDetails = () => {
             <main>
                 { movie &&
                 <>
+                <Link to={backLink.current}>Back</Link>
               <section className={css.sectionMovie}>
             <img src={image} alt={movie.title} className={css.imageMovies}/>
             <div className={css.contList}>
