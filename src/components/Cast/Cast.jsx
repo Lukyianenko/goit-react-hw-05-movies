@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from 'prop-types';
 import css from './Cast.module.css';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
@@ -27,7 +28,10 @@ export const Cast = () => {
             <ul className={css.actorList}>
                 {
                   casts.map(item => {
-                    const image = `https://image.tmdb.org/t/p/w500/${item.profile_path}`;
+                    let image;
+                    if(item.profile_path) {
+                        image = `https://image.tmdb.org/t/p/w500/${item.profile_path}`;
+                    }
                     return(
                         <li key={item.id} className={css.itemActor}>
                             <div className={css.imgNot}>
@@ -43,4 +47,11 @@ export const Cast = () => {
             </ul>}
         </div>
     )
+}
+
+Cast.propTypes = {
+    moviesId: PropTypes.number,
+    state: PropTypes.arrayOf(PropTypes.exact({
+        casts: PropTypes.array
+    }))
 }

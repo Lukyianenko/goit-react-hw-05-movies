@@ -1,5 +1,6 @@
 import { NavLink, Route, Routes } from 'react-router-dom';
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import { Home } from './Home/Home';
 import { Movies } from './Movies/Movies';
 import { MovieDetails } from './MovieDetails/MovieDetails';
@@ -46,3 +47,12 @@ const isActived2 = () => {
     </div>
   );
 };
+
+App.propTypes = {
+  classActive: PropTypes.string,
+  classActive2: PropTypes.string,
+    state: PropTypes.arrayOf(PropTypes.exact({
+      isActive: PropTypes.string.isRequired,
+      isActive2: PropTypes.string.isRequired,
+    }))
+}

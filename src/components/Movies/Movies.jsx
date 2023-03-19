@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import css from './Movies.module.css';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
@@ -7,18 +8,23 @@ const KEY = '115673062d9a805a3df250beb0ca2927';
 export const Movies = () => {
     const [movies, setMovies] = useState({});
     const [searchParams, setSearchParams] = useSearchParams('');
-    const [moviesId, setMoviesId] = useState(null);
+    const [moviesId, setMoviesId] = useState('');
 
-  const searchMovies = (e) => {
+    const searchMovies = (e) => {
         e.preventDefault();
 
-        setMoviesId(searchParams.get('moviesId').trim());
+        if(searchParams.get('moviesId') !== null) {
+            setMoviesId(searchParams.get('moviesId').trim());
 
-        if(searchParams.get('moviesId').trim() === '' || searchParams.get('moviesId').trim() === null) {
-            alert('please enter name movies');
-            setMovies([]);
-            return;
+            if(searchParams.get('moviesId').trim() === '' || searchParams.get('moviesId').trim() === null) {
+                alert('please enter name movies');
+                setMovies([]);
+                return;
+            }
         }
+        
+
+        
     }
 
     useEffect(() => {
@@ -61,4 +67,12 @@ export const Movies = () => {
             }
         </main>
     )
+}
+
+Movies.propTypes = {
+    state: PropTypes.arrayOf(PropTypes.exact({
+        searchParams: PropTypes.string,
+        movies: PropTypes.array,
+        moviesId: PropTypes.number,
+    }))
 }

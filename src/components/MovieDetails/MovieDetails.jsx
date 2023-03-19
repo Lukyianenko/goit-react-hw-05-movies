@@ -1,5 +1,6 @@
 import { useParams, Link, Outlet  } from "react-router-dom";
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import css from './MovieDetails.module.css';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
@@ -58,4 +59,14 @@ export const MovieDetails = () => {
             <Outlet /> 
         </main>
     )
+}
+
+
+MovieDetails.propTypes = {
+    moviesId: PropTypes.number,
+    num: PropTypes.number,
+    state: PropTypes.arrayOf(PropTypes.exact({
+        movie: PropTypes.array,
+        image: PropTypes.string
+    }))
 }

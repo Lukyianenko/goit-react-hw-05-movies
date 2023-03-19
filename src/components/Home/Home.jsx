@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
@@ -32,4 +33,10 @@ export const Home = () => {
             </ul>}
         </main>
     )
+}
+
+Home.propTypes = {
+    state: PropTypes.arrayOf(PropTypes.exact({
+        movies: PropTypes.array
+    }))
 }

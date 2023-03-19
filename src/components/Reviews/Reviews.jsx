@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const KEY = '115673062d9a805a3df250beb0ca2927';
 
@@ -40,4 +41,11 @@ export const Reviews = () => {
             }
         </div>
     )
+}
+
+Reviews.propTypes = {
+        moviesId: PropTypes.number,
+    state: PropTypes.arrayOf(PropTypes.exact({
+        review: PropTypes.array,
+    }))
 }
