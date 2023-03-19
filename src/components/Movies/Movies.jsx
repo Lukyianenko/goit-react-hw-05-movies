@@ -19,10 +19,15 @@ export const Movies = () => {
             if(searchParams.get('moviesId').trim() === '' || searchParams.get('moviesId').trim() === null) {
                 alert('please enter name movies');
                 setMovies([]);
+                if(e.target.value === '') {
+                    setSearchParams({});
+                 }
                 return;
             }
         }
-        
+
+                
+
 
         
     }
