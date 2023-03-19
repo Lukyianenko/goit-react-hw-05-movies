@@ -1,13 +1,13 @@
 import { NavLink, Route, Routes } from 'react-router-dom';
 import { useState, lazy, Suspense } from "react";
-import Cast from '../components/Cast/Cast';
-import Reviews from '../components/Reviews/Reviews';
 import PropTypes from 'prop-types';
 import css from './App.module.css';
 
 const Home = lazy(() => import('../components/Home/Home'));
 const Movies = lazy(() => import('../components/Movies/Movies'));
 const MovieDetails = lazy(() => import('../components/MovieDetails/MovieDetails'));
+const Reviews = lazy(() => import('../components/Reviews/Reviews'));
+const Cast = lazy(() => import('../components/Cast/Cast'));
 
 export const App = () => {
   const [isActive, setIsActive] = useState('active');

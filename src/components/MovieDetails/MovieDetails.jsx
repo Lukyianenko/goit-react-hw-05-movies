@@ -1,5 +1,5 @@
 import { useParams, Link, Outlet, useLocation } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import PropTypes from 'prop-types';
 import css from './MovieDetails.module.css';
 
@@ -13,8 +13,6 @@ const MovieDetails = () => {
     const backLink = useRef(location.state?.from ?? '/movies');
     let num;
 
-    console.log(backLink);
-    console.log(location)
     if(movie){
     num = Math.round(movie.vote_average * 10);
     }
@@ -61,7 +59,9 @@ const MovieDetails = () => {
             </div>
             </>
             }
+            <Suspense fallback={<div>Loading...</div>}>
             <Outlet /> 
+            </Suspense>
         </main>
     )
 }
