@@ -8,39 +8,31 @@ const KEY = '115673062d9a805a3df250beb0ca2927';
 const Movies = () => {
     const [movies, setMovies] = useState({});
     const [searchParams, setSearchParams] = useSearchParams('');
-    const [moviesId, setMoviesId] = useState('');
     const [value, setValue] = useState('');
     const location = useLocation();
     let query = searchParams.get('moviesId') ?? '';
     
      const searchMoviesSubmit = async (e) => {
         e.preventDefault();
-        setSearchParams({moviesId: value});
-        query = searchParams.get('moviesId');
-
-        if(query !== null) {
-            setMoviesId(query.trim());
-
-            if(query.trim() === '' || query.trim() === null) {
-                alert('please enter name movies');
-                setMovies([]);
-                if(query === '') {
-                    setSearchParams({});
-                 }
-                return;
-            }
+        if(value !== ''){
+            setSearchParams({moviesId: value});
+            query = searchParams.get('moviesId');
+        } else {
+            alert('please enter name movies');  
         }
     }
 
     useEffect(() => {
         if(query === '') return;
 
+        setValue(query);
         function fetchData() {
             return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}`)
             .then(resp => resp.json())
             .then(data => {
                 if(data.results.length === 0) {
                     alert('Not found movies with this name! Please, try again.');
+                    setMovies([]);
                     return;
                 }
                 setMovies(data.results);
@@ -48,27 +40,7 @@ const Movies = () => {
               .catch(erorr => alert(erorr));
           }
           fetchData();
-    }, [query]); 
-
-    useEffect(() => {
-        if(moviesId === null || moviesId === '') {
-            return
-        }
-
-        function fetchData() {
-            return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${moviesId}`)
-            .then(resp => resp.json())
-            .then(data => {
-                if(data.results.length === 0) {
-                    alert('Not found movies with this name! Please, try again.');
-                    return;
-                }
-                setMovies(data.results);
-            })
-              .catch(erorr => alert(erorr));
-          }
-          fetchData();
-    }, [moviesId]);   
+    }, [query]);   
     
     return (
         <main className={css.Movies}>
